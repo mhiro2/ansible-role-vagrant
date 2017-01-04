@@ -1,0 +1,27 @@
+---
+
+- name: Install vagrant-libvirt dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libguestfs-tools-c
+    - libvirt
+    - libvirt-devel
+    - libvirt-python
+    - libxslt-devel
+    - libxml2-devel
+    - qemu
+    - qemu-kvm
+    - ruby-devel
+
+- name: Install Vagrant plugins
+  command: vagrant plugin install {{ item }} 
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.vagrant.d/gems/specifications/{{ item }}-*.gemspec"
+  with_items:
+    - sahara
+    - vagrant-cachier
+    - vagrant-hostmanager
+    - vagrant-libvirt
+    - vagrant-share
