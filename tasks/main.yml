@@ -3,7 +3,7 @@
 
 - name: Check if Vagrant is already installed
   command: vagrant --version
-  register: vagrant_version
+  register: vagrant_installed_version
   ignore_errors: True
 
 - name: Download Vagrant pakage
@@ -12,7 +12,7 @@
     dest: "{{ vagrant_download_dir }}/{{ vagrant_package }}"
     checksum: "{{ vagrant_package_checksum }}"
   when:
-    vagrant_version|failed or vagrant_version.stdout.find(vagrant_version) == -1
+    vagrant_installed_version|failed or vagrant_installed_version.stdout.find(vagrant_version) == -1
 
 - name: Install Vagrant
   become: yes

@@ -5,5 +5,5 @@ arch: "{{ x86_64|default(ansible_architecture) }}"
 vagrant_version: 1.9.1
 vagrant_download_dir: /tmp
 vagrant_package: "vagrant_{{ vagrant_version }}_{{ arch }}.rpm"
-vagrant_package_url: "https://releases.hashicorp.com/vagrant/{{ vagrant_package }}"
+vagrant_package_url: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/{{ vagrant_package }}"
 vagrant_package_checksum: sha256:ee1d7e6b49d93df0e01412bc14700b9a13d0a2d98175e160321e4ff235f30422
