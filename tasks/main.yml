@@ -1,23 +1,10 @@
 ---
 # tasks file for ansible-role-vagrant
 
-- name: Check if Vagrant is already installed
-  command: vagrant --version
-  register: vagrant_installed_version
-  ignore_errors: True
-
-- name: Download Vagrant pakage
-  get_url:
-    url: "{{ vagrant_package_url }}"
-    dest: "{{ vagrant_download_dir }}/{{ vagrant_package }}"
-    checksum: "{{ vagrant_package_checksum }}"
-  when:
-    vagrant_installed_version|failed or vagrant_installed_version.stdout.find(vagrant_version) == -1
-
-- name: Install Vagrant
+- include: install.yml
   become: yes
-  yum:
-    name: "{{ vagrant_download_dir }}/{{ vagrant_package }}"
-    state: present
+  tags: vagrant_install
 
 - include: plugins.yml
+  become: yes
+  tags: vagrant_plugins

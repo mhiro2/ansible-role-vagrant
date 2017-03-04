@@ -24,7 +24,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: mhiro2.vagrant }
+         - { role: mhiro2.vagrant, tags: ['vagrant'] }
 
 License
 -------
