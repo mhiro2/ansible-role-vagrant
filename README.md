@@ -11,6 +11,7 @@ Plugins:
 - vagrant-cachier
 - vagrant-hostmanager
 - vagrant-libvirt
+- vagrant-mutate
 - vagrant-share
 
 Requirements
