@@ -14,10 +14,14 @@
     - qemu-kvm
     - ruby-devel
 
+- name: List installed Vagrant plugins
+  shell: "vagrant plugin list | awk '{print $1}'"
+  become: no
+  changed_when: False
+  register: vagrant_plugin_list
+
 - name: Install Vagrant plugins
-  command: vagrant plugin install {{ item }} 
-  args:
-    creates: "{{ lookup('env', 'HOME') }}/.vagrant.d/gems/specifications/{{ item }}-*.gemspec"
+  command: "vagrant plugin install {{ item }}"
   with_items:
     - sahara
     - vagrant-cachier
@@ -25,3 +29,5 @@
     - vagrant-libvirt
     - vagrant-mutate
     - vagrant-share
+  become: no
+  when: item not in vagrant_plugin_list.stdout_lines
