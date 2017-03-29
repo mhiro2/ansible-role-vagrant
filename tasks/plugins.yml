@@ -22,12 +22,6 @@
 
 - name: Install Vagrant plugins
   command: "vagrant plugin install {{ item }}"
-  with_items:
-    - sahara
-    - vagrant-cachier
-    - vagrant-hostmanager
-    - vagrant-libvirt
-    - vagrant-mutate
-    - vagrant-share
+  with_items: "{{ vagrant_plugins|default([]) }}"
   become: no
   when: item not in vagrant_plugin_list.stdout_lines

@@ -6,19 +6,33 @@ Ansible Role: vagrant
 
 Install Vagrant and some plugins.
 
-Plugins:
-- sahara
-- vagrant-cachier
-- vagrant-hostmanager
-- vagrant-libvirt
-- vagrant-mutate
-- vagrant-share
-
 Requirements
 ------------
 
 - Target: CentOS 7.x
 - Ansible version: 2.0 or later
+
+Role Variables
+--------------
+
+### Default role variables
+
+```
+arch: "{{ x86_64|default(ansible_architecture) }}"
+vagrant_version: 1.9.3
+vagrant_download_dir: /tmp
+vagrant_package: "vagrant_{{ vagrant_version }}_{{ arch }}.rpm"
+vagrant_package_url: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/{{ vagrant_package }}"
+vagrant_package_checksum: sha256:83e9da874398a113b7636f5a1fcf3f4c66120df6600b1b983267cb63162e85e1
+
+vagrant_plugins:
+  - sahara
+  - vagrant-cachier
+  - vagrant-hostmanager
+  - vagrant-libvirt
+  - vagrant-mutate
+  - vagrant-share
+```
 
 Example Playbook
 ----------------
