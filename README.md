@@ -1,8 +1,10 @@
-Ansible Role: vagrant
+Ansible Role: vagrant (deprecated)
 =======================
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/mhiro2/ansible-role-vagrant/blob/master/LICENSE.txt)
 [![Build Status](https://travis-ci.org/mhiro2/ansible-role-vagrant.svg?branch=master)](https://travis-ci.org/mhiro2/ansible-role-vagrant)
+
+**see https://github.com/mhiro2/ansible-mhiro2/tree/master/roles/vagrant**
 
 Install Vagrant and some plugins.
 
